@@ -1,0 +1,7 @@
+.game-over-container{
+    max-width: 80vw;
+    max-height: 80vh;
+}
+.game-over-container img{
+    width: 100%;
+}

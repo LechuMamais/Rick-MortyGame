@@ -1,0 +1,8 @@
+.character-guess-card{
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.character-guess-card:hover{
+    transform: scale(1.1)
+}

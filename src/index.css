@@ -1,0 +1,67 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Color Variables */
+  --color-primary: #00b5cc;
+  /* Similar to the bright cyan color often seen */
+  --color-secondary: #ffcc00;
+  /* Bright yellow, similar to Rick's portal gun */
+  --color-accent: #ff6f61;
+  /* A bright, almost neon coral color */
+
+  --color-background: #1e1e1e;
+  --color-text: #f0f0f0;
+  --color-light: #ffffff;
+  --color-dark: #2c3e50;
+
+  /* Font Sizes */
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-large: 1.25rem;
+  --font-size-xlarge: 1.5rem;
+  --font-size-xxlarge: 2rem;
+  --font-size-xxxlarge: 3rem;
+
+  /* Padding */
+  --padding-small: 0.5rem;
+  --padding-base: 1rem;
+  --padding-large: 1.5rem;
+  --padding-xlarge: 2rem;
+
+  /* Margin */
+  --margin-small: 0.5rem;
+  --margin-base: 1rem;
+  --margin-large: 1.5rem;
+
+  --margin-xlarge: 2rem;
+
+
+  /* Border Radius */
+  --border-radius-small: 4px;
+  --border-radius-base: 8px;
+  --border-radius-large: 16px;
+
+  /* Font Family */
+  --font-family-sans: 'Helvetica Neue', Arial, sans-serif;
+  --font-family-serif: 'Georgia', serif;
+
+
+  color-scheme: light dark;
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: var(--font-family-sans);
+  box-sizing: border-box;
+}

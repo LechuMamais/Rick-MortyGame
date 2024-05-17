@@ -1,0 +1,25 @@
+.game-text-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.game-text-container h2{
+    margin: 0;
+}
+.game-text-container h3{
+    font-size: var(--font-size-xxlarge);
+}
+
+.game-text-container h3 span{
+    font-size: var(--font-size-xxxlarge);
+    color: var(--color-accent);
+}
+
+.character-list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

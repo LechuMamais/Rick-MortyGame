@@ -1,0 +1,9 @@
+De momento el juego se trata de adivinar qué imagen corresponde con el nombre de Rick que se muestra.
+Más adelante haré una Home, donde se podrá seleccionar si jugar con Rick, Morty, Summer, Herry o Beth.
+
+Tenemos dos providers:
+    GameProvider tiene los estados relativos al juego como points y level
+        //* Actualmente en desuso, al final los estoy manejando como estados 
+        dentro del comoponente GAME con un reducer
+    RickContext tiene los estados relativos al personaje con el que se está jugando.
+
