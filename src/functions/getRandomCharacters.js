@@ -1,11 +1,11 @@
 import { GameActions } from "../actions/Game.actions";
 
-export const getRandomCharacters = (allCharacters, dispatch) => {
+export const getRandomCharacters = (UnSelectedCharacters, dispatch) => {
   const randomCharacters = [];
   while (randomCharacters.length < 3) {
-    const randomIndex = Math.floor(Math.random() * allCharacters.length);
-    const randomCharacter = allCharacters[randomIndex];
-    if (!randomCharacters.some(character => character.id === randomCharacter.id)) {
+    const randomIndex = Math.floor(Math.random() * UnSelectedCharacters.length);
+    const randomCharacter = UnSelectedCharacters[randomIndex];
+    if (!randomCharacters.some(character => character.id === randomCharacter.id) && !randomCharacters.some(character => character.name === randomCharacter.name)) {
       randomCharacters.push(randomCharacter);
     }
   }

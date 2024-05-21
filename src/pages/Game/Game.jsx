@@ -6,21 +6,26 @@ import GameOver from "../../components/GameOver/GameOver";
 import { useReducer } from "react";
 import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
 import { getRandomCharacters } from "../../functions/getRandomCharacters";
-import { checkCorrectCharacter } from "../../functions/checkCorrectCharacter";
+import { handleGuessCardSelection } from "../../functions/checkCorrectCharacter";
 import { startNewGame } from "../../functions/startNewGame";
 import { Link } from "react-router-dom";
 
 const Game = () => {
-  const { allCharacters, setAllCharacters, charName } = useContext(SelectedMainCharacterContext);
-  const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE);
-  const { characterRandomOptions, correctCharacter, gameOver, points, win } = state;
+  const {
+    allCharacters,
+    charName,
+    UnSelectedCharacters,
+    setUnSelectedCharacters,
+  } = useContext(SelectedMainCharacterContext);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const { characterRandomOptions, correctCharacter, gameOver, points, win } =
+    state;
 
   useEffect(() => {
-    if (allCharacters.length > 0) {
-      getRandomCharacters(allCharacters, dispatch);
+    if (UnSelectedCharacters.length > 0) {
+      getRandomCharacters(UnSelectedCharacters, dispatch);
     }
-    console.log(win)
-  }, [allCharacters]);
+  }, [UnSelectedCharacters]);
 
   return (
     <div className="Game">
@@ -42,12 +47,12 @@ const Game = () => {
                 key={character.id}
                 character={character}
                 onClick={() =>
-                  checkCorrectCharacter(
+                  handleGuessCardSelection(
                     character,
                     correctCharacter,
-                    allCharacters,
-                    setAllCharacters,
-                    dispatch
+                    dispatch,
+                    UnSelectedCharacters,
+                    setUnSelectedCharacters
                   )
                 }
               />
@@ -58,8 +63,12 @@ const Game = () => {
       {gameOver && (
         <>
           <GameOver />
+          <p className="game-over-points">Points: {points}</p>
           <button
-            onClick={() => startNewGame(dispatch, allCharacters)}
+            onClick={() => {
+              setUnSelectedCharacters(allCharacters);
+              startNewGame(dispatch, UnSelectedCharacters);
+            }}
             className="btn btn-start"
             id="start-button"
           >
@@ -67,9 +76,13 @@ const Game = () => {
           </button>
         </>
       )}
-      {win &&(
-        <><h2>You are the winner!</h2>
-        <h3>You have correctly selected all the {charName} of the multiverse!</h3></>
+      {win && (
+        <>
+          <h2>You are the winner!</h2>
+          <h3>
+            You have correctly selected all the {charName}s of the multiverse!
+          </h3>
+        </>
       )}
       <Link to={`/`}>
         <button className="btn btn-back">Back</button>
