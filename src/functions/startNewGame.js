@@ -1,7 +1,7 @@
 import { GameActions } from "../actions/Game.actions";
-import { getRandomRicks } from "./getRandomRicks";
+import { getRandomCharacters } from "./getRandomCharacters";
 
-export const startNewGame = (dispatch, ricksCharacters) => {
+export const startNewGame = (dispatch, allCharacters) => {
     dispatch({type: GameActions.START_GAME});
-    getRandomRicks(ricksCharacters, dispatch);
+    getRandomCharacters(allCharacters, dispatch);
   };

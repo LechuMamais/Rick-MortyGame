@@ -1,9 +1,19 @@
 De momento el juego se trata de adivinar qué imagen corresponde con el nombre de Rick que se muestra.
 Más adelante haré una Home, donde se podrá seleccionar si jugar con Rick, Morty, Summer, Herry o Beth.
 
-Tenemos dos providers:
+Providers:
     GameProvider tiene los estados relativos al juego como points y level
         //* Actualmente en desuso, al final los estoy manejando como estados 
         dentro del comoponente GAME con un reducer
-    RickContext tiene los estados relativos al personaje con el que se está jugando.
+    SelectedMainCharacterProvider tiene los estados relativos al personaje con el que se está jugando. 
+        Por como lo implementé, podría no estar y pasar directamente los estados, pero lo hago de esta
+        manera un poco a modo de práctica.
 
+
+Problemas actuales:
+    - 
+
+
+Futuras Mejoras:
+    Que a los correctCharacter se vayan quitando del array de characters del provider, para que no se repitan
+    durante esa partida.

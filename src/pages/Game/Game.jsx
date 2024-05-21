@@ -1,31 +1,34 @@
 import "./Game.css";
 import { useContext, useEffect } from "react";
-import { RickContext } from "../../providers/RickContext";
+import { SelectedMainCharacterContext } from "../../providers/SelectedMainCharacterContext";
 import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGuessCard";
 import GameOver from "../../components/GameOver/GameOver";
 import { useReducer } from "react";
 import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
-import { getRandomRicks } from "../../functions/getRandomRicks";
-import { checkCorrectRick } from "../../functions/checkCorrectRick";
+import { getRandomCharacters } from "../../functions/getRandomCharacters";
+import { checkCorrectCharacter } from "../../functions/checkCorrectCharacter";
 import { startNewGame } from "../../functions/startNewGame";
 
 const Game = () => {
-  const ricksCharacters = useContext(RickContext);
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { rickRandomOptions, correctRick, gameOver, points } = state;
+  const { allCharacters, charName } = useContext(SelectedMainCharacterContext);
+  const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE);
+  const { characterRandomOptions, correctCharacter, gameOver, points } = state;
+
+  console.log('charName', charName);
 
   useEffect(() => {
-    if (ricksCharacters.length > 0) {
-      getRandomRicks(ricksCharacters, dispatch);
+    if (allCharacters.length > 0) {
+      getRandomCharacters(allCharacters, dispatch);
     }
-  }, [ricksCharacters]);
+    console.log('characterRandomOptions', characterRandomOptions);
+  }, [allCharacters]);
 
   return (
     <div className="Game">
       <div className="game-text-container">
         <h1>Rick and Morty Game</h1>
-        <h2>They are all Rick, but...</h2>
-        <h3>Who is <span>{correctRick && correctRick.name}</span>?</h3>
+        <h2>They are all {charName}, but...</h2>
+        <h3>Who is <span>{correctCharacter && correctCharacter.name}</span>?</h3>
       </div>
       {!gameOver && (
         <section className="game-container">
@@ -33,12 +36,12 @@ const Game = () => {
             <p className="game-value">Points: {points}</p>
           </div>
           <div className="character-list">
-            {rickRandomOptions.map((rick) => (
+            {characterRandomOptions.map((character) => (
               <CharacterGuessCard
-                key={rick.id}
-                character={rick}
+                key={character.id}
+                character={character}
                 onClick={() =>
-                  checkCorrectRick(rick, correctRick, ricksCharacters, dispatch)
+                  checkCorrectCharacter(character, correctCharacter, allCharacters, dispatch)
                 }
               />
             ))}
@@ -46,7 +49,7 @@ const Game = () => {
         </section>
       )}
       {gameOver && (
-        <GameOver onClick={() => startNewGame(dispatch, ricksCharacters)} />
+        <GameOver onClick={() => startNewGame(dispatch, allCharacters)} />
       )}
     </div>
   );
