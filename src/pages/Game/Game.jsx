@@ -8,19 +8,17 @@ import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
 import { getRandomCharacters } from "../../functions/getRandomCharacters";
 import { checkCorrectCharacter } from "../../functions/checkCorrectCharacter";
 import { startNewGame } from "../../functions/startNewGame";
+import { Link } from "react-router-dom";
 
 const Game = () => {
   const { allCharacters, charName } = useContext(SelectedMainCharacterContext);
-  const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const { characterRandomOptions, correctCharacter, gameOver, points } = state;
-
-  console.log('charName', charName);
 
   useEffect(() => {
     if (allCharacters.length > 0) {
       getRandomCharacters(allCharacters, dispatch);
     }
-    console.log('characterRandomOptions', characterRandomOptions);
   }, [allCharacters]);
 
   return (
@@ -28,7 +26,9 @@ const Game = () => {
       <div className="game-text-container">
         <h1>Rick and Morty Game</h1>
         <h2>They are all {charName}, but...</h2>
-        <h3>Who is <span>{correctCharacter && correctCharacter.name}</span>?</h3>
+        <h3>
+          Who is <span>{correctCharacter && correctCharacter.name}</span>?
+        </h3>
       </div>
       {!gameOver && (
         <section className="game-container">
@@ -41,7 +41,12 @@ const Game = () => {
                 key={character.id}
                 character={character}
                 onClick={() =>
-                  checkCorrectCharacter(character, correctCharacter, allCharacters, dispatch)
+                  checkCorrectCharacter(
+                    character,
+                    correctCharacter,
+                    allCharacters,
+                    dispatch
+                  )
                 }
               />
             ))}
@@ -49,8 +54,20 @@ const Game = () => {
         </section>
       )}
       {gameOver && (
-        <GameOver onClick={() => startNewGame(dispatch, allCharacters)} />
+        <>
+          <GameOver />
+          <button
+            onClick={() => startNewGame(dispatch, allCharacters)}
+            className="btn btn-start"
+            id="start-button"
+          >
+            ReStart
+          </button>
+        </>
       )}
+      <Link to={`/`}>
+        <button className="btn btn-back">Back</button>
+      </Link>
     </div>
   );
 };
