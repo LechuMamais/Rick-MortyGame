@@ -11,14 +11,15 @@ import { startNewGame } from "../../functions/startNewGame";
 import { Link } from "react-router-dom";
 
 const Game = () => {
-  const { allCharacters, charName } = useContext(SelectedMainCharacterContext);
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { characterRandomOptions, correctCharacter, gameOver, points } = state;
+  const { allCharacters, setAllCharacters, charName } = useContext(SelectedMainCharacterContext);
+  const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE);
+  const { characterRandomOptions, correctCharacter, gameOver, points, win } = state;
 
   useEffect(() => {
     if (allCharacters.length > 0) {
       getRandomCharacters(allCharacters, dispatch);
     }
+    console.log(win)
   }, [allCharacters]);
 
   return (
@@ -30,7 +31,7 @@ const Game = () => {
           Who is <span>{correctCharacter && correctCharacter.name}</span>?
         </h3>
       </div>
-      {!gameOver && (
+      {!gameOver && !win && (
         <section className="game-container">
           <div className="game-values">
             <p className="game-value">Points: {points}</p>
@@ -45,6 +46,7 @@ const Game = () => {
                     character,
                     correctCharacter,
                     allCharacters,
+                    setAllCharacters,
                     dispatch
                   )
                 }
@@ -64,6 +66,10 @@ const Game = () => {
             ReStart
           </button>
         </>
+      )}
+      {win &&(
+        <><h2>You are the winner!</h2>
+        <h3>You have correctly selected all the {charName} of the multiverse!</h3></>
       )}
       <Link to={`/`}>
         <button className="btn btn-back">Back</button>

@@ -1,13 +1,24 @@
-De momento el juego se trata de adivinar qué imagen corresponde con el nombre de Rick que se muestra.
-Más adelante haré una Home, donde se podrá seleccionar si jugar con Rick, Morty, Summer, Herry o Beth.
+De momento el juego se trata de adivinar qué imagen corresponde con el nombre del personaje que se muestra.
+En la Home se puede seleccionar si jugar con Rick, Morty, Summer, Herry o Beth. Al clickar la card de alguno de 
+ellos, se navega a la pagina Game con el personaje seleccionado en los params. Además se solicita a la api
+todos los personajes en cuyo nombre esté el nombre del personaje seleccionado. Estos se almacenan en 
+SelectedMainCharacterProvider.
+Este provider tiene los estados relativos al personaje con el que se está jugando. 
+Por como lo implementé, podría no estar y pasar directamente los estados, pero lo hago de esta
+manera un poco a modo de práctica.
+En el componente Game se va ejecutando toda la lógica del juego, la mayor parte está estructurada y definia
+en Game.reducer, excepto la función removeCorrectCharacterFromAllCharacters, ya que maneja el estado allCharacters
+definido en el Provider. Lo que hace es eliminar el correctCharacter de allCharacters para que no se repita durante
+el desarrollo de la partida.
 
-Providers:
-    GameProvider tiene los estados relativos al juego como points y level
-        //* Actualmente en desuso, al final los estoy manejando como estados 
-        dentro del comoponente GAME con un reducer
-    SelectedMainCharacterProvider tiene los estados relativos al personaje con el que se está jugando. 
-        Por como lo implementé, podría no estar y pasar directamente los estados, pero lo hago de esta
-        manera un poco a modo de práctica.
+Cuando el array allCharacters tiene un lenght de 2 entonces llegamos al final de la partida y el jugador ha ganado!
+
+//* Estoy teniendo un error que entra en un bucle infinito cuando debería poner win = true y mostrar el mensaje de You Win!
+
+
+GameProvider tiene los estados relativos al juego como points y level
+    //* Actualmente en desuso, al final los estoy manejando como estados 
+    dentro del comoponente GAME con un reducer
 
 
 Problemas actuales:

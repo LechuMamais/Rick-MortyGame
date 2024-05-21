@@ -5,6 +5,7 @@ export const INITIAL_STATE = {
   correctCharacter: {},
   gameOver: false,
   points: 0,
+  win: false,
 };
 
 export const reducer = (state, action) => {
@@ -19,7 +20,10 @@ export const reducer = (state, action) => {
       return { ...state, points: state.points + 1 };
     case GameActions.SET_GAME_OVER:
       return { ...state, gameOver: action.payload };
-    default:charName
+    case GameActions.SET_WIN:
+      return { ...state, win: action.payload };
+    default:
+      charName;
       return state;
   }
 };
