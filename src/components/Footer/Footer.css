@@ -1,0 +1,13 @@
+footer{
+    height: 60px;
+    width: 100%;
+    background-color: var(--color-dark);
+    padding: var(--padding-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer>p{
+    font-size: var(--font-size-base-large);
+    letter-spacing: 1.1px;
+}

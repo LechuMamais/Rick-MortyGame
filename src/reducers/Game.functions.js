@@ -6,6 +6,17 @@ export const getCharactersByName = async (charName) => {
     return allCharacters;
 };
 
+export const fetchAndSetCharacters = async (charName, dispatch) => {
+    if (charName) {
+        console.log(charName);
+        const allCharacters = await getCharactersByName(charName);
+        dispatch({
+            type: GameActions.GET_ALL_CHARACTERS,
+            payload: allCharacters,
+        });
+    }
+};
+
 export const startNewGame = (dispatch, UnSelectedCharacters, allCharacters) => {
     dispatch({ type: GameActions.START_GAME, payload: allCharacters });
     dispatch({ type: GameActions.RESET_UNSELECTED_CHARACTERS, payload: allCharacters });
@@ -39,13 +50,14 @@ export const handleGuessCardSelection = (selectedCharacter, correctCharacter, di
     if (checkCorrectCharacter(selectedCharacter, correctCharacter)) {
         dispatch({ type: GameActions.INCREMENT_POINTS });
         removeSelectedCharacterFromUnSelectedCharacters(correctCharacter, UnSelectedCharacters, dispatch);
-        updateBestScore(charName, actualScore, bestScores, setBestScores)
+        updateBestScore(charName, actualScore + 1, bestScores, setBestScores);
         if (checkWin(UnSelectedCharacters)) {
             dispatch({ type: GameActions.SET_WIN, payload: true });
         } else {
             setRandomAndCorrectCharacters(UnSelectedCharacters, dispatch);
         }
     } else {
+        updateBestScore(charName, actualScore, bestScores, setBestScores);
         dispatch({ type: GameActions.SET_GAME_OVER, payload: true })
     }
 };

@@ -23,6 +23,7 @@
   /* Font Sizes */
   --font-size-small: 0.875rem;
   --font-size-base: 1rem;
+  --font-size-base-large: 1.125rem;
   --font-size-large: 1.25rem;
   --font-size-xlarge: 1.5rem;
   --font-size-xxlarge: 2rem;
@@ -53,13 +54,42 @@
   color-scheme: light dark;
   color: var(--color-text);
   background-color: var(--color-background);
-
 }
 
-.body {
+*{
+  font-family: var(--font-family-sans);
+  font-weight: 200;
+  text-decoration: none;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-decoration: none;
-  font-family: var(--font-family-sans);
-  box-sizing: border-box;
+  text-align: center;
 }
+
+body {
+  font-family: var(--font-family-sans);
+}
+
+main {
+  padding: var(--padding-large);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--font-size-xxlarge);
+  color: var(--color-primary);
+  margin-bottom: var(--margin-base);
+}
+
+h2 {
+  font-size: var(--font-size-xlarge);
+  color: var(--color-secondary);
+  margin-bottom: var(--margin-large);
+}
+
+p {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+

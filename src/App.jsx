@@ -3,7 +3,7 @@ import "./App.css";
 import Game from "./pages/Game/Game";
 import Home from "./pages/Home/Home";
 import { GameProvider } from "./providers/GameProvider";
-//import { RickProvider } from "./providers/RickContext";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Game/:charName" element={<Game />} />
         </Routes>
+        <Footer/>
       </div>
     </GameProvider>
   );

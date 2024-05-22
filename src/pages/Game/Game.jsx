@@ -11,10 +11,9 @@ import {
   setRandomAndCorrectCharacters,
   handleGuessCardSelection,
   startNewGame,
-  getCharactersByName,
+  fetchAndSetCharacters,
 } from "../../reducers/Game.functions";
 import { GameActions } from "../../reducers/Game.actions";
-import { splitFirstName } from "../../functions/splitFirstName";
 
 const Game = () => {
   const { charName } = useParams();
@@ -34,17 +33,7 @@ const Game = () => {
     dispatch({
       type: GameActions.START_GAME,
     });
-    const fetchAndSetCharacters = async () => {
-      if (charName) {
-        console.log(charName);
-        const allCharacters = await getCharactersByName(charName);
-        dispatch({
-          type: GameActions.GET_ALL_CHARACTERS,
-          payload: allCharacters,
-        });
-      }
-    };
-    fetchAndSetCharacters();
+    fetchAndSetCharacters(charName, dispatch);
   }, [charName]);
 
   useEffect(() => {
@@ -57,8 +46,6 @@ const Game = () => {
   }, [allCharacters]);
 
   useEffect(() => {
-    console.log(UnSelectedCharacters);
-    console.log(allCharacters);
     if (UnSelectedCharacters && UnSelectedCharacters.length > 0) {
       setRandomAndCorrectCharacters(UnSelectedCharacters, dispatch);
     }
@@ -104,6 +91,10 @@ const Game = () => {
         <>
           <GameOver />
           <p className="game-over-points">Points: {points}</p>
+          <p className="win-points win-points-best-score">
+            Best score: {bestScores[charName]}
+          </p>
+
           <button
             onClick={() => {
               startNewGame(dispatch, UnSelectedCharacters, allCharacters);
@@ -122,17 +113,6 @@ const Game = () => {
             You have correctly selected all the {charName}s of the multiverse!
           </h3>
           <p className="win-points win-points-actual-score">Points: {points}</p>
-
-          {bestScores[charName] > points && (
-            <p className="win-points win-points-better-score">
-              New Best Score!
-            </p>
-          )}
-          {bestScores[charName] <= points && (
-            <p className="win-points win-points-best-score">
-              Best score: {bestScores[charName]}
-            </p>
-          )}
         </>
       )}
       <Link to={`/`}>
