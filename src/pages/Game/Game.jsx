@@ -5,10 +5,8 @@ import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGue
 import GameOver from "../../components/GameOver/GameOver";
 import { useReducer } from "react";
 import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
-import { getRandomCharacters } from "../../functions/getRandomCharacters";
-import { handleGuessCardSelection } from "../../functions/checkCorrectCharacter";
-import { startNewGame } from "../../functions/startNewGame";
 import { Link } from "react-router-dom";
+import { getRandomCharacters, handleGuessCardSelection, startNewGame } from "../../reducers/Game.functions";
 
 const Game = () => {
   const {

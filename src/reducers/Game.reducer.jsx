@@ -1,4 +1,4 @@
-import { GameActions } from "../actions/Game.actions";
+import { GameActions } from "./Game.actions";
 
 export const INITIAL_STATE = {
   characterRandomOptions: [],
