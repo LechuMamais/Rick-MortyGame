@@ -54,10 +54,9 @@ const Game = () => {
   return (
     <div className="Game">
       <div className="game-text-container">
-        <h1>Rick and Morty Game</h1>
         <h2>They are all {charName}, but...</h2>
         <h3>
-          Who is <span>{correctCharacter && correctCharacter.name}</span>?
+          Who is <span>{correctCharacter && correctCharacter.name}</span> ...?
         </h3>
       </div>
       {!gameOver && !win && (

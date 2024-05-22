@@ -51,4 +51,5 @@ Problemas actuales:
 To Do:
     - Utilizaremos un context para almacenar y mostrar los mejores puntajes con cada personajes
     - Loaders
-    - Maquetación
+    - Maquetación:
+        - Fondo animado

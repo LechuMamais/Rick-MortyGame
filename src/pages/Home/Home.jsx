@@ -45,7 +45,6 @@ const Home = () => {
 
   return (
     <main>
-      <h1>Rick & Morty Game!</h1>
       <h2>Select character</h2>
       <section className="select-character-cards-container">
         {mainCharacters.map((character) => 
