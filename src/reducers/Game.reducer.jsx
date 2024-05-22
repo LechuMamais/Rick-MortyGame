@@ -1,6 +1,8 @@
 import { GameActions } from "./Game.actions";
 
 export const INITIAL_STATE = {
+  allCharacters: [],
+  UnSelectedCharacters: [],
   characterRandomOptions: [],
   correctCharacter: {},
   gameOver: false,
@@ -11,7 +13,7 @@ export const INITIAL_STATE = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case GameActions.START_GAME:
-      return INITIAL_STATE;
+      return {...INITIAL_STATE, allCharacters: action.payload};
     case GameActions.SET_CHARACTER_RANDOM_OPTIONS:
       return { ...state, characterRandomOptions: action.payload };
     case GameActions.SET_CORRECT_CHARACTER:
@@ -22,8 +24,22 @@ export const reducer = (state, action) => {
       return { ...state, gameOver: action.payload };
     case GameActions.SET_WIN:
       return { ...state, win: action.payload };
+    case GameActions.GET_ALL_CHARACTERS:
+      return {
+        ...state,
+        allCharacters: action.payload,
+      };
+    case GameActions.RESET_UNSELECTED_CHARACTERS:
+      return {
+        ...state,
+        UnSelectedCharacters: action.payload,
+      };
+    case GameActions.REMOVE_SELECTED_CHARACTER_FROM_UNSELECTED_CHARACTERS:
+      return {
+        ...state,
+        UnSelectedCharacters: action.payload,
+      };
     default:
-      charName;
       return state;
   }
 };

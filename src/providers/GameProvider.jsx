@@ -1,13 +1,18 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 export const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-  const [points, setPoints] = useState(0);
-  const [level, setLevel] = useState(0);
+  const [bestScores, setBestScores] = useState({
+    Rick: 0,
+    Morty: 0,
+    Summer: 0,
+    Beth: 0,
+    Jerry: 0,
+  });
 
   return (
-    <GameContext.Provider value={{points, setPoints, level, setLevel}}>
+    <GameContext.Provider value={{ bestScores, setBestScores }}>
       {children}
     </GameContext.Provider>
   );

@@ -15,6 +15,29 @@ export const fetchCharacters = async () => {
   }
 };
 
+export const fetchCharactersByName = async (name) => {
+  const allCharacters = [];
+  let url = `${API_CHARACTER_URL}/?name=${name}`;
+  
+  try {
+    while (url) {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      allCharacters.push(...data.results);
+      url = data.info.next;
+    }
+    return allCharacters;
+  } catch (error) {
+    console.error('Error fetching characters:', error);
+    return [];
+  }
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const fetchRicksCharacters = async () => {
   const allRicksCharacters = [];
   try {
@@ -48,26 +71,6 @@ export const fetchMortysCharacters = async () => {
     return allMortysCharacters;
   } catch (error) {
     console.error('Error fetching Mortys:', error);
-    return [];
-  }
-};
-export const fetchCharactersByName = async (name) => {
-  const allCharacters = [];
-  let url = `${API_CHARACTER_URL}/?name=${name}`;
-
-  try {
-    while (url) {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      allCharacters.push(...data.results);
-      url = data.info.next;
-    }
-    return allCharacters;
-  } catch (error) {
-    console.error('Error fetching characters:', error);
     return [];
   }
 };

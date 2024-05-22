@@ -1,27 +1,66 @@
 import "./Game.css";
-import { useContext, useEffect } from "react";
-import { SelectedMainCharacterContext } from "../../providers/SelectedMainCharacterContext";
+import { useEffect } from "react";
+import { useReducer } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { GameContext } from "../../providers/GameProvider";
 import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGuessCard";
 import GameOver from "../../components/GameOver/GameOver";
-import { useReducer } from "react";
 import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
-import { Link } from "react-router-dom";
-import { getRandomCharacters, handleGuessCardSelection, startNewGame } from "../../reducers/Game.functions";
+import {
+  setRandomAndCorrectCharacters,
+  handleGuessCardSelection,
+  startNewGame,
+  getCharactersByName,
+} from "../../reducers/Game.functions";
+import { GameActions } from "../../reducers/Game.actions";
+import { splitFirstName } from "../../functions/splitFirstName";
 
 const Game = () => {
+  const { charName } = useParams();
+  const { bestScores, setBestScores } = useContext(GameContext);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const {
     allCharacters,
-    charName,
     UnSelectedCharacters,
-    setUnSelectedCharacters,
-  } = useContext(SelectedMainCharacterContext);
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { characterRandomOptions, correctCharacter, gameOver, points, win } =
-    state;
+    characterRandomOptions,
+    correctCharacter,
+    gameOver,
+    points,
+    win,
+  } = state;
 
   useEffect(() => {
-    if (UnSelectedCharacters.length > 0) {
-      getRandomCharacters(UnSelectedCharacters, dispatch);
+    dispatch({
+      type: GameActions.START_GAME,
+    });
+    const fetchAndSetCharacters = async () => {
+      if (charName) {
+        console.log(charName);
+        const allCharacters = await getCharactersByName(charName);
+        dispatch({
+          type: GameActions.GET_ALL_CHARACTERS,
+          payload: allCharacters,
+        });
+      }
+    };
+    fetchAndSetCharacters();
+  }, [charName]);
+
+  useEffect(() => {
+    if (allCharacters && allCharacters.length > 0) {
+      dispatch({
+        type: GameActions.RESET_UNSELECTED_CHARACTERS,
+        payload: allCharacters,
+      });
+    }
+  }, [allCharacters]);
+
+  useEffect(() => {
+    console.log(UnSelectedCharacters);
+    console.log(allCharacters);
+    if (UnSelectedCharacters && UnSelectedCharacters.length > 0) {
+      setRandomAndCorrectCharacters(UnSelectedCharacters, dispatch);
     }
   }, [UnSelectedCharacters]);
 
@@ -40,7 +79,7 @@ const Game = () => {
             <p className="game-value">Points: {points}</p>
           </div>
           <div className="character-list">
-            {characterRandomOptions.map((character) => (
+            {characterRandomOptions?.map((character) => (
               <CharacterGuessCard
                 key={character.id}
                 character={character}
@@ -50,7 +89,10 @@ const Game = () => {
                     correctCharacter,
                     dispatch,
                     UnSelectedCharacters,
-                    setUnSelectedCharacters
+                    charName,
+                    points,
+                    bestScores,
+                    setBestScores
                   )
                 }
               />
@@ -64,8 +106,7 @@ const Game = () => {
           <p className="game-over-points">Points: {points}</p>
           <button
             onClick={() => {
-              setUnSelectedCharacters(allCharacters);
-              startNewGame(dispatch, UnSelectedCharacters);
+              startNewGame(dispatch, UnSelectedCharacters, allCharacters);
             }}
             className="btn btn-start"
             id="start-button"
@@ -80,6 +121,18 @@ const Game = () => {
           <h3>
             You have correctly selected all the {charName}s of the multiverse!
           </h3>
+          <p className="win-points win-points-actual-score">Points: {points}</p>
+
+          {bestScores[charName] > points && (
+            <p className="win-points win-points-better-score">
+              New Best Score!
+            </p>
+          )}
+          {bestScores[charName] <= points && (
+            <p className="win-points win-points-best-score">
+              Best score: {bestScores[charName]}
+            </p>
+          )}
         </>
       )}
       <Link to={`/`}>

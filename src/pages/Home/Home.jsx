@@ -3,11 +3,15 @@ import React, { useState, useEffect } from "react";
 import { fetchCharacters } from "../../services/api";
 import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGuessCard";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { GameContext } from '../../providers/GameProvider';
+import { splitFirstName } from '../../functions/splitFirstName';
 
 const Home = () => {
   const [mainCharacters, setMainCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {bestScores} = useContext(GameContext)
 
   const navigate = useNavigate();
 
@@ -27,9 +31,7 @@ const Home = () => {
   }, []);
 
   const onMainCardClick = (character) => {
-    console.log(character);
-    const charName = character.name.split(' ', 1)[0]
-    console.log(charName)
+    const charName = splitFirstName(character.name);
     navigate(`/Game/${charName}`);
   };
 
@@ -51,6 +53,8 @@ const Home = () => {
             key={character.id}
             character={character}
             onClick={()=>onMainCardClick(character)}
+            name={character.name}
+            bestScore={bestScores[splitFirstName(character.name)]}
           />
         )}
       </section>

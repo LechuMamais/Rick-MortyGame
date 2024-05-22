@@ -31,7 +31,6 @@ export const SelectedMainCharacterProvider = ({ children }) => {
     <SelectedMainCharacterContext.Provider
       value={{
         allCharacters,
-        charName,
         UnSelectedCharacters,
         setUnSelectedCharacters,
       }}
