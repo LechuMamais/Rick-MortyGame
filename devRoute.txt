@@ -50,5 +50,5 @@ Problemas actuales:
 
 To Do:
     - Loaders
-    - Maquetación:
-        - Fondo animado
+    - Responsive Game
+    - Responsive Carousel
