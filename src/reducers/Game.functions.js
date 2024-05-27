@@ -8,7 +8,6 @@ export const getCharactersByName = async (charName) => {
 
 export const fetchAndSetCharacters = async (charName, dispatch) => {
     if (charName) {
-        console.log(charName);
         const allCharacters = await getCharactersByName(charName);
         dispatch({
             type: GameActions.GET_ALL_CHARACTERS,
