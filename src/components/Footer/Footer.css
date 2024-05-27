@@ -1,7 +1,8 @@
 footer{
     margin-top: auto;
     width: 100%;
-    background-color: var(--color-dark);
+    /*background-color: var(--color-dark);*/
+    background-color: transparent;
     padding: var(--padding-base);
     display: flex;
     align-items: center;

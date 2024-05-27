@@ -12,22 +12,18 @@
     align-items: center;
     justify-content: space-evenly;
 }
-.Game .game-text-container h2{
-    margin: 0;
-}
-.Game .game-text-container h3{
-    font-size: var(--font-size-xxlarge);
-}
 
-.Game .game-text-container h3 span{
+.Game .game-text-container h2 span{
     font-size: var(--font-size-xxxlarge);
+    font-weight: 600;
     color: var(--color-accent);
 }
 
 .Game .game-container {
     display: flex;
     flex-direction: column;
-    gap: var(--margin-large);
+    gap: var(--margin-xlarge);
+    flex-wrap: wrap;
 }
 
 .Game .game-container .game-value{

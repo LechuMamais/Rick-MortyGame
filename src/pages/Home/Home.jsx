@@ -44,7 +44,7 @@ const Home = () => {
   }
 
   return (
-    <main>
+    <main className='Home'>
       <h2>Select character</h2>
       <section className="select-character-cards-container">
         {mainCharacters.map((character) => 

@@ -52,12 +52,12 @@ const Game = () => {
   }, [UnSelectedCharacters]);
 
   return (
-    <div className="Game">
+    <main className="Game">
       <div className="game-text-container">
-        <h2>They are all {charName}, but...</h2>
-        <h3>
+        <h3>They are all {charName}, but...</h3>
+        <h2>
           Who is <span>{correctCharacter && correctCharacter.name}</span> ...?
-        </h3>
+        </h2>
       </div>
       {!gameOver && !win && (
         <section className="game-container">
@@ -117,7 +117,7 @@ const Game = () => {
       <Link to={`/`}>
         <button className="btn btn-back">Back</button>
       </Link>
-    </div>
+    </main>
   );
 };
 
