@@ -8,4 +8,43 @@
     padding: 2rem;
 }
 
+.alice-carousel__dots{
+    display: none;
+}
 
+.alice-carousel__wrapper{
+    position: relative;
+}
+
+.alice-carousel__prev-btn, .alice-carousel__next-btn {
+    position: absolute;
+    height: 4rem;
+    width: 4rem !important;
+    top: calc(50% - 2rem);
+    scale: 1.5;
+    transform-origin: 1px center;
+    transition: all 0.3s ease-in-out;
+}
+.alice-carousel__prev-btn{
+    left: -80px;
+}
+
+.alice-carousel__next-btn{
+    right: -50px;
+}
+
+.alice-carousel__prev-btn-wrapper, .alice-carousel__next-btn-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alice-carousel__prev-btn-item, .alice-carousel__next-btn-item{
+    transition: all 0.3s ease-in-out;
+}
+
+.alice-carousel__prev-btn-item:hover, .alice-carousel__next-btn-item:hover{
+    color: var(--color-text);
+}

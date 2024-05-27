@@ -1,7 +1,8 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-
+  
+  user-select: none;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -9,11 +10,8 @@
 
   /* Color Variables */
   --color-primary: #00b5cc;
-  /* Similar to the bright cyan color often seen */
   --color-secondary: #ffcc00;
-  /* Bright yellow, similar to Rick's portal gun */
   --color-accent: #ff6f61;
-  /* A bright, almost neon coral color */
 
   --color-background: #1e1e1e;
   --color-text: #f0f0f0;
