@@ -1,6 +1,6 @@
 .game-over-container{
-    max-width: 80vw;
-    max-height: 80vh;
+    width: 100vw;
+    max-width: 900px;
 }
 .game-over-container img{
     width: 100%;

@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+
+.sigmar-one-regular {
+  font-family: "Sigmar One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -19,6 +27,7 @@
   --color-dark: #2c3e50;
 
   /* Font Sizes */
+  --font-size-xsmall: 0.75rem;
   --font-size-small: 0.875rem;
   --font-size-base: 1rem;
   --font-size-base-large: 1.125rem;
@@ -45,7 +54,7 @@
   --border-radius-large: 16px;
 
   /* Font Family */
-  --font-family-sans: 'Helvetica Neue', Arial, sans-serif;
+  --font-family-sans: 'Sigmar One', 'Helvetica Neue', Arial, sans-serif;
   --font-family-serif: 'Georgia', serif;
 
   /* Letter Spacing */
@@ -153,9 +162,6 @@ p {
 }
 
 .btn:hover {
-  /*background-color: var(--color-text);
-  color: var(--color-background);
-  opacity: 0.75;*/
   border-bottom: 3px solid var(--color-dark);
   border-left: 2px solid var(--color-dark);
   box-shadow: -3px 5px 12px -3px var(--color-dark);

@@ -59,7 +59,9 @@ const Home = () => {
 
   return (
     <main className="Home">
-      <h2>Select character</h2>
+      <div className="home-text-container">
+        <h2>Select character</h2>
+      </div>
       <div className="carousel-container">
         <CharactersCarouselContainer
           mainCharactersItems={mainCharactersItems}

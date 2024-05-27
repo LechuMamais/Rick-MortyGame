@@ -53,12 +53,14 @@ const Game = () => {
 
   return (
     <main className="Game">
-      <div className="game-text-container">
-        <h3>They are all {charName}, but...</h3>
-        <h2>
-          Who is <span>{correctCharacter && correctCharacter.name}</span> ...?
-        </h2>
-      </div>
+      {!gameOver && !win && (
+        <div className="game-text-container">
+          <h3>They are all {charName}, but...</h3>
+          <h2>
+            Who is <span>{correctCharacter && correctCharacter.name}</span> ...?
+          </h2>
+        </div>
+      )}
       {!gameOver && !win && (
         <section className="game-container">
           <div className="game-values">
@@ -93,16 +95,6 @@ const Game = () => {
           <p className="win-points win-points-best-score">
             Best score: {bestScores[charName]}
           </p>
-
-          <button
-            onClick={() => {
-              startNewGame(dispatch, UnSelectedCharacters, allCharacters);
-            }}
-            className="btn btn-start"
-            id="start-button"
-          >
-            ReStart
-          </button>
         </>
       )}
       {win && (
@@ -114,9 +106,22 @@ const Game = () => {
           <p className="win-points win-points-actual-score">Points: {points}</p>
         </>
       )}
-      <Link to={`/`}>
-        <button className="btn btn-back">Back</button>
-      </Link>
+      <div className="buttons-container">
+        {gameOver && (
+          <button
+            onClick={() => {
+              startNewGame(dispatch, UnSelectedCharacters, allCharacters);
+            }}
+            className="btn btn-start"
+            id="start-button"
+          >
+            ReStart
+          </button>
+        )}
+        <Link to={`/`}>
+          <button className="btn btn-back">Back</button>
+        </Link>
+      </div>
     </main>
   );
 };

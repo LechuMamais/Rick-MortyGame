@@ -3,7 +3,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="">
-      <p>© 2023 Rick and Morty Game. All rights reserved.</p>
+      <p>© 2024 Rick and Morty Game. All rights reserved.</p>
     </footer>
   );
 };

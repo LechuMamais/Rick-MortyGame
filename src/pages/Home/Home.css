@@ -7,11 +7,7 @@
     text-align: center;
 }
 
-.carousel-container {
-    width: 800px;
-}
-
-.select-character-cards-container {
+.Home .select-character-cards-container {
     padding: 1rem 0;
     display: flex;
     flex-wrap: nowrap;
@@ -20,22 +16,23 @@
     transition: transform 0.5s ease-in-out;
 }
 
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 1;
+.Home>.home-text-container {
+    background-color: #ffffff2c;
+    padding: var(--margin-base) var(--margin-large);
+    border-radius: var(--margin-xlarge);
+    -webkit-box-shadow: 0px 0px 283px 46px rgba(255, 255, 255, 0.5), inset 10px 10px 261px 74px rgba(255, 255, 255, 0.111);
+    -moz-box-shadow: 0px 0px 283px 46px rgba(255, 255, 255, 0.5), inset 10px 10px 261px 74px rgba(255, 255, 255, 0.111);
+    box-shadow: 0px 0px 283px 46px rgba(255, 255, 255, 0.5), inset 10px 10px 261px 74px rgba(255, 255, 255, 0.111);
 }
 
-#prevButton {
-    left: 0;
+.Home>.home-text-container>h2 {
+    font-size: 50px;
+    background: url('/title_texture.jpg');
+    background-size: cover;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-#nextButton {
-    right: 0;
+.Home .carousel-container {
+    width: 800px;
 }

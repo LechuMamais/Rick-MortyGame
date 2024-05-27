@@ -1,14 +1,17 @@
-footer{
+footer {
     margin-top: auto;
     width: 100%;
-    /*background-color: var(--color-dark);*/
     background-color: transparent;
     padding: var(--padding-base);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; 
+    position: relative;
+    z-index: 10;
 }
-footer>p{
-    font-size: var(--font-size-base-large);
-    letter-spacing: 1.1px;
+
+footer > p {
+    font-size: clamp(var(--font-size-xsmall), 2vw, var(--font-size-large)); /* Responsive font size using clamp */
+    letter-spacing: var(--letter-spacing-large);
 }
