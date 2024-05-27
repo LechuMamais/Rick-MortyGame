@@ -1,0 +1,11 @@
+@import "react-alice-carousel/lib/alice-carousel.css";
+
+.Alice-Carousel-Container{
+    width: 100%;
+}
+
+.Alice-Carousel-Container .alice-carousel__stage-item{
+    padding: 2rem;
+}
+
+

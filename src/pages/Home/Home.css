@@ -3,15 +3,39 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    justify-content: center;
     gap: var(--margin-xlarge);
+    text-align: center;
+}
+
+.carousel-container {
+    width: 800px
 }
 
 .select-character-cards-container {
+    padding: 1rem 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
     gap: var(--margin-large);
-    margin-bottom: var(--margin-xlarge);
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#prevButton {
+    left: 0;
+}
+
+#nextButton {
+    right: 0;
 }

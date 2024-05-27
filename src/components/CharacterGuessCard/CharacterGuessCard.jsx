@@ -1,7 +1,10 @@
 import "./CharacterGuessCard.css";
 
+const handleDragStart = (e) => e.preventDefault();
+
 export const CharacterGuessCard = ({ character, onClick, name, bestScore }) => (
-  <div className="character-guess-card" onClick={onClick}>
+  <div className="character-guess-card" onClick={onClick} onDragStart={handleDragStart}
+  role="presentation">
     <img src={character.image} alt={character.status} />
     <div className="character-guess-card-text-container">
       {name && (
