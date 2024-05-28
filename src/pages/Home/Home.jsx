@@ -10,7 +10,6 @@ import CharactersCarouselContainer from "../../components/CharactersCarouselCont
 
 const Home = () => {
   const [mainCharacters, setMainCharacters] = useState([]);
-  const [mainCharactersItems, setMainCharactersItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { bestScores } = useContext(GameContext);
@@ -31,23 +30,10 @@ const Home = () => {
     loadMainCharacters();
   }, []);
 
-  useEffect(() => {
-    const onMainCardClick = (character) => {
-      const charName = splitFirstName(character.name);
-      navigate(`/Game/${charName}`);
-    };
-
-    const newMainCharactersItems = mainCharacters.map((character) => (
-      <CharacterGuessCard
-        key={character.name}
-        character={character}
-        onClick={() => onMainCardClick(character)}
-        name={character.name}
-        bestScore={bestScores[splitFirstName(character.name)]}
-      />
-    ));
-    setMainCharactersItems(newMainCharactersItems);
-  }, [mainCharacters]);
+  const onMainCardClick = (character) => {
+    const charName = splitFirstName(character.name);
+    navigate(`/Game/${charName}`);
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -63,9 +49,17 @@ const Home = () => {
         <h2>Select character</h2>
       </div>
       <div className="carousel-container">
-        <CharactersCarouselContainer
-          mainCharactersItems={mainCharactersItems}
-        />
+        <CharactersCarouselContainer>
+          {mainCharacters.map((character) => (
+            <CharacterGuessCard
+              key={character.name}
+              character={character}
+              onClick={() => onMainCardClick(character)}
+              name={character.name}
+              bestScore={bestScores[splitFirstName(character.name)]}
+            />
+          ))}
+        </CharactersCarouselContainer>
       </div>
     </main>
   );
