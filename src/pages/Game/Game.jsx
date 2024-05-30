@@ -91,10 +91,10 @@ const Game = () => {
         <div className="game-over-wrapper">
           <div className="game-over-container">
             <div className="game-over-image-container">
-              <img src="/game_over2.jpg" alt="Game Over" />
+              <img src="/jerry_gif.webp" alt="Game Over" />
             </div>
             <p className="game-over-points">Points: {points}</p>
-            <p className="win-points win-points-best-score">
+            <p className="game-over-points-best-score">
               Best score: {bestScores[charName]}
             </p>
           </div>
