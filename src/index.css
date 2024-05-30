@@ -18,7 +18,7 @@
 
   /* Color Variables */
   --color-primary: #00b5cc;
-  --color-secondary: #ffcc00;
+  --color-secondary: #fffb00;
   --color-accent: #ff6f61;
 
   --color-background: #1e1e1e;
@@ -47,6 +47,7 @@
   --margin-base: 1rem;
   --margin-large: 1.5rem;
   --margin-xlarge: 2rem;
+  --margin-xxlarge:2.5rem;
 
   /* Border Radius */
   --border-radius-small: 4px;
@@ -113,7 +114,7 @@ main {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: blur(3px);
+  filter: blur(4px);
   z-index: -1;
 }
 
@@ -159,6 +160,13 @@ p {
   border-radius: 0 0 0 var(--border-radius-base);
   border-bottom: 3px solid transparent;
   border-left: 2px solid transparent;
+
+  background: url('/title_texture.jpg');
+  background-size: auto;
+  background-clip: border-box;
+  background-size: cover;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .btn:hover {

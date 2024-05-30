@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { GameContext } from "../../providers/GameProvider";
 import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGuessCard";
-import GameOver from "../../components/GameOver/GameOver";
 import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
 import {
   setRandomAndCorrectCharacters,
@@ -89,39 +88,55 @@ const Game = () => {
         </section>
       )}
       {gameOver && (
-        <>
-          <GameOver />
-          <p className="game-over-points">Points: {points}</p>
-          <p className="win-points win-points-best-score">
-            Best score: {bestScores[charName]}
-          </p>
-        </>
+        <div className="game-over-wrapper">
+          <div className="game-over-container">
+            <div className="game-over-image-container">
+              <img src="/game_over2.jpg" alt="Game Over" />
+            </div>
+            <p className="game-over-points">Points: {points}</p>
+            <p className="win-points win-points-best-score">
+              Best score: {bestScores[charName]}
+            </p>
+          </div>
+          <div className="buttons-container">
+            <button
+              onClick={() => {
+                startNewGame(dispatch, UnSelectedCharacters, allCharacters);
+              }}
+              className="btn btn-start"
+              id="start-button"
+            >
+              ReStart
+            </button>
+
+            <Link to={`/`}>
+              <button className="btn btn-back">Back</button>
+            </Link>
+          </div>
+        </div>
       )}
       {win && (
-        <>
+        <div className="game-win-container">
           <h2>You are the winner!</h2>
           <h3>
             You have correctly selected all the {charName}s of the multiverse!
           </h3>
           <p className="win-points win-points-actual-score">Points: {points}</p>
-        </>
+          <div className="buttons-container">
+            <Link to={`/`}>
+              <button className="btn btn-back">Back</button>
+            </Link>
+          </div>
+        </div>
       )}
-      <div className="buttons-container">
-        {gameOver && (
-          <button
-            onClick={() => {
-              startNewGame(dispatch, UnSelectedCharacters, allCharacters);
-            }}
-            className="btn btn-start"
-            id="start-button"
-          >
-            ReStart
-          </button>
+      {!win &&
+        !gameOver && (
+          <div className="buttons-container">
+            <Link to={`/`}>
+              <button className="btn btn-back">Back</button>
+            </Link>
+          </div>
         )}
-        <Link to={`/`}>
-          <button className="btn btn-back">Back</button>
-        </Link>
-      </div>
     </main>
   );
 };

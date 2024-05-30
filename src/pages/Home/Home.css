@@ -26,7 +26,7 @@
 }
 
 .Home>.home-text-container>h2 {
-    font-size: clamp(var(--font-size-xlarge), 3vw ,var(--font-size-xxlarge));
+    font-size: clamp(var(--font-size-xlarge), 3vw, var(--font-size-xxlarge));
     background: url('/title_texture.jpg');
     background-size: cover;
     -webkit-text-fill-color: transparent;
@@ -38,15 +38,32 @@
 }
 
 
+/*----------------------------------------------------------------------------------------------------*/
 
-@media  (max-width:900px) {
+
+@media (max-width:920px) {
     .Home .carousel-container {
         width: 544px;
     }
 }
 
-@media  (max-width:660px) {
+@media (max-width:660px) {
     .Home .carousel-container {
-        width: 286px;
+        width: 100vw;
     }
+
+    .characters-carousel-container .carousel-btn-wrapper {
+        top: 400px !important;
+        right: 15vw !important;
+    }
+
+    /*.characters-carousel-container .carousel-btn-wrapper:hover {
+        right: calc(15vw - 14px);
+    }
+    .characters-carousel-container .carousel-btn-wrapper:focus {
+        .characters-carousel-container .carousel-btn-wrapper .bi{
+            background-color: red;
+        }
+        
+    }*/
 }

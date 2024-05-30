@@ -63,26 +63,3 @@ const CharactersCarouselContainer = ({ children }) => {
 };
 
 export default CharactersCarouselContainer;
-
-/*
-const responsive = {
-    0: {items: 3},
-}
-
-const CharactersCarouselContainer = ({ mainCharactersItems }) => {
-    return (
-      <div className="Alice-Carousel-Container">
-        <AliceCarousel 
-          mouseTracking 
-          responsive={responsive} 
-          items={mainCharactersItems} 
-          infinite
-          paddingLeft={0}
-          paddingRight={28}
-        />
-      </div>
-    );
-  };
-  
-
-export default CharactersCarouselContainer;*/
