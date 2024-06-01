@@ -8,10 +8,14 @@ import { splitFirstName } from "../../functions/splitFirstName";
 import CharactersCarouselContainer from "../../components/CharactersCarouselContainer/CharactersCarouselContainer";
 import { INITIAL_STATE, reducer } from "../../reducers/Home/Home.reducer";
 import { useReducer } from "react";
-import { loadMainCharacters, onMainCardClick } from "../../reducers/Home/Home.functions";
+import {
+  loadMainCharacters,
+  onMainCardClick,
+} from "../../reducers/Home/Home.functions";
+import CardSkeletorLoader from "../../components/CardSkeletorLoader/CardSkeletorLoader";
 
 const Home = () => {
-  const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const { mainCharacters, loading, error } = state;
   const { bestScores } = useContext(GameContext);
   const navigate = useNavigate();
@@ -19,10 +23,6 @@ const Home = () => {
   useEffect(() => {
     loadMainCharacters(dispatch);
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>{error}</p>;
@@ -35,15 +35,27 @@ const Home = () => {
       </div>
       <div className="carousel-container">
         <CharactersCarouselContainer>
-          {mainCharacters.map((character) => (
-            <CharacterGuessCard
-              key={character.name}
-              character={character}
-              onClick={() => onMainCardClick(character, navigate)}
-              name={character.name}
-              bestScore={bestScores[splitFirstName(character.name)]}
-            />
-          ))}
+          {loading ? (
+            <div className="carousel-container">
+              <div className="characters-carousel-container">
+                <div className="characters-carousel">
+                  <CardSkeletorLoader />
+                  <CardSkeletorLoader />
+                  <CardSkeletorLoader />
+                </div>
+              </div>
+            </div>
+          ) : (
+            mainCharacters.map((character) => (
+              <CharacterGuessCard
+                key={character.name}
+                character={character}
+                onClick={() => onMainCardClick(character, navigate)}
+                name={character.name}
+                bestScore={bestScores[splitFirstName(character.name)]}
+              />
+            ))
+          )}
         </CharactersCarouselContainer>
       </div>
     </main>

@@ -1,0 +1,21 @@
+.card-skeletor-loader{
+    border-radius: var(--border-radius-base-large);
+    animation: pulse 2.5s infinite ease-in-out;
+    height: 300px;
+    width: 225px;
+    flex: 0 0 auto;
+}
+
+
+@keyframes pulse {
+    0% {
+        background-color: transparent !important;
+    }
+    50% {
+        background-color: #ccccccbf;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+

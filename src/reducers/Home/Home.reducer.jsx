@@ -9,8 +9,9 @@ export const INITIAL_STATE = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case HomeActions.SET_MAIN_CHARACTERS:
-      return { ...state, mainCharacters: action.payload, loading: false };
+      //return { ...state, mainCharacters: action.payload, loading: false };
 
+      return { ...state };
     case HomeActions.SET_ERROR:
       return { ...state, error: action.payload, loading: false };
 

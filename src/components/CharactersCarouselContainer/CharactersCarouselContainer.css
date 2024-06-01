@@ -10,13 +10,13 @@
     overflow-x: scroll;
     scroll-behavior: smooth;
 
-    scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
-    -ms-overflow-style: none; /* Oculta la barra de desplazamiento en IE y Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .characters-carousel-container .characters-carousel::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento en Chrome y navegadores que usan webkit */
-  }
+    display: none;
+}
 
 .characters-carousel-container .characters-carousel .character-guess-card {
     flex: 0 0 auto;
@@ -29,16 +29,14 @@
     top: 50%;
     right: -48px;
     transform: translateY(-50%);
-
     cursor: pointer;
-    
     transition: all 300ms ease-in;
 }
 
-.characters-carousel-container .carousel-btn-wrapper:hover{
+.characters-carousel-container .carousel-btn-wrapper:hover {
     right: -52px;
 }
 
-.characters-carousel-container .carousel-btn-wrapper .bi{
+.characters-carousel-container .carousel-btn-wrapper .bi {
     transform: scale(2);
 }

@@ -4,7 +4,7 @@
     width: 225px;
     overflow: hidden;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: var(--border-radius-base-large);
     box-shadow: -2px 2px 15px 2px var(--color-dark);
     transition: transform 0.3s;
     flex: 0 0 auto;
