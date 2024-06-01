@@ -13,12 +13,14 @@ import {
   fetchAndSetCharacters,
 } from "../../reducers/Game/Game.functions";
 import { GameActions } from "../../reducers/Game/Game.actions";
+import CardSkeletorLoader from "../../components/CardSkeletorLoader/CardSkeletorLoader";
 
 const Game = () => {
   const { charName } = useParams();
   const { bestScores, setBestScores } = useContext(GameContext);
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const {
+    loading,
     allCharacters,
     UnSelectedCharacters,
     characterRandomOptions,
@@ -66,24 +68,36 @@ const Game = () => {
             <p className="game-value texture-text">Points: {points}</p>
           </div>
           <div className="character-list">
-            {characterRandomOptions?.map((character) => (
-              <CharacterGuessCard
-                key={character.id}
-                character={character}
-                onClick={() =>
-                  handleGuessCardSelection(
-                    character,
-                    correctCharacter,
-                    dispatch,
-                    UnSelectedCharacters,
-                    charName,
-                    points,
-                    bestScores,
-                    setBestScores
-                  )
-                }
-              />
-            ))}
+            {loading ? (
+              <div className="carousel-container">
+                <div className="characters-carousel-container">
+                  <div className="characters-carousel">
+                    <CardSkeletorLoader />
+                    <CardSkeletorLoader />
+                    <CardSkeletorLoader />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              characterRandomOptions?.map((character) => (
+                <CharacterGuessCard
+                  key={character.id}
+                  character={character}
+                  onClick={() =>
+                    handleGuessCardSelection(
+                      character,
+                      correctCharacter,
+                      dispatch,
+                      UnSelectedCharacters,
+                      charName,
+                      points,
+                      bestScores,
+                      setBestScores
+                    )
+                  }
+                />
+              ))
+            )}
           </div>
         </section>
       )}
@@ -129,14 +143,13 @@ const Game = () => {
           </div>
         </div>
       )}
-      {!win &&
-        !gameOver && (
-          <div className="buttons-container">
-            <Link to={`/`}>
-              <button className="btn btn-back">Back</button>
-            </Link>
-          </div>
-        )}
+      {!win && !gameOver && (
+        <div className="buttons-container">
+          <Link to={`/`}>
+            <button className="btn btn-back">Back</button>
+          </Link>
+        </div>
+      )}
     </main>
   );
 };

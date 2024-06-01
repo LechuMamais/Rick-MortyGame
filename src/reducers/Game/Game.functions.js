@@ -14,6 +14,7 @@ export const fetchAndSetCharacters = async (charName, dispatch) => {
             payload: allCharacters,
         });
     }
+    dispatch({ type: GameActions.SET_LOADING, payload: false });
 };
 
 export const startNewGame = (dispatch, UnSelectedCharacters, allCharacters) => {

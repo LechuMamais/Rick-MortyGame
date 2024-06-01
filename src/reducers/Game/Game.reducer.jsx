@@ -1,6 +1,7 @@
 import { GameActions } from "./Game.actions";
 
 export const INITIAL_STATE = {
+  loading: true,
   allCharacters: [],
   UnSelectedCharacters: [],
   characterRandomOptions: [],
@@ -12,8 +13,10 @@ export const INITIAL_STATE = {
 
 export const reducer = (state, action) => {
   switch (action.type) {
+    case GameActions.SET_LOADING:
+      return { ...state, loading: action.payload };
     case GameActions.START_GAME:
-      return {...INITIAL_STATE, allCharacters: action.payload};
+      return { ...INITIAL_STATE, allCharacters: action.payload };
     case GameActions.SET_CHARACTER_RANDOM_OPTIONS:
       return { ...state, characterRandomOptions: action.payload };
     case GameActions.SET_CORRECT_CHARACTER:
