@@ -5,14 +5,14 @@ import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { GameContext } from "../../providers/GameProvider";
 import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGuessCard";
-import { INITIAL_STATE, reducer } from "../../reducers/Game.reducer";
+import { INITIAL_STATE, reducer } from "../../reducers/Game/Game.reducer";
 import {
   setRandomAndCorrectCharacters,
   handleGuessCardSelection,
   startNewGame,
   fetchAndSetCharacters,
-} from "../../reducers/Game.functions";
-import { GameActions } from "../../reducers/Game.actions";
+} from "../../reducers/Game/Game.functions";
+import { GameActions } from "../../reducers/Game/Game.actions";
 
 const Game = () => {
   const { charName } = useParams();
@@ -53,9 +53,9 @@ const Game = () => {
   return (
     <main className="Game">
       {!gameOver && !win && (
-        <div className="game-text-container">
-          <h3>They are all {charName}, but...</h3>
-          <h2>
+        <div className="game-text-container cloud-bg-effect">
+          <h3 className=" texture-text">They are all {charName}, but...</h3>
+          <h2 className=" texture-text">
             Who is <span>{correctCharacter && correctCharacter.name}</span> ...?
           </h2>
         </div>
@@ -63,7 +63,7 @@ const Game = () => {
       {!gameOver && !win && (
         <section className="game-container">
           <div className="game-values">
-            <p className="game-value">Points: {points}</p>
+            <p className="game-value texture-text">Points: {points}</p>
           </div>
           <div className="character-list">
             {characterRandomOptions?.map((character) => (
@@ -89,7 +89,7 @@ const Game = () => {
       )}
       {gameOver && (
         <div className="game-over-wrapper">
-          <div className="game-over-container">
+          <div className="game-over-container texture-text">
             <div className="game-over-image-container">
               <img src="/jerry_gif.webp" alt="Game Over" />
             </div>
@@ -116,7 +116,7 @@ const Game = () => {
         </div>
       )}
       {win && (
-        <div className="game-win-container">
+        <div className="game-win-container texture-text  cloud-bg-effect">
           <h2>You are the winner!</h2>
           <h3>
             You have correctly selected all the {charName}s of the multiverse!

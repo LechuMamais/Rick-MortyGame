@@ -17,25 +17,18 @@
 }
 
 .Home>.home-text-container {
-    background-color: #ffffff26;
     padding: var(--margin-base) var(--margin-large);
     border-radius: var(--margin-xlarge);
-    -webkit-box-shadow: 0px 0px 283px 46px rgba(255, 255, 255, 0.5), inset 10px 10px 261px 74px rgba(255, 255, 255, 0.111);
-    -moz-box-shadow: 0px 0px 283px 46px rgba(255, 255, 255, 0.5), inset 10px 10px 261px 74px rgba(255, 255, 255, 0.111);
-    box-shadow: 0px 0px 283px 46px rgba(255, 255, 255, 0.5), inset 10px 10px 261px 74px rgba(255, 255, 255, 0.111);
 }
 
 .Home>.home-text-container>h2 {
-    font-size: clamp(var(--font-size-xlarge), 3vw, var(--font-size-xxlarge));
-    background: url('/title_texture.jpg');
-    background-size: cover;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: clamp(var(--font-size-xxlarge), 3vw, var(--font-size-xxlarge));
 }
 
 .Home .carousel-container {
     width: 800px;
 }
+
 
 
 /*----------------------------------------------------------------------------------------------------*/
@@ -56,14 +49,4 @@
         top: 400px !important;
         right: 15vw !important;
     }
-
-    /*.characters-carousel-container .carousel-btn-wrapper:hover {
-        right: calc(15vw - 14px);
-    }
-    .characters-carousel-container .carousel-btn-wrapper:focus {
-        .characters-carousel-container .carousel-btn-wrapper .bi{
-            background-color: red;
-        }
-        
-    }*/
 }

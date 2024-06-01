@@ -1,4 +1,4 @@
-import { fetchCharactersByName } from "../services/api";
+import { fetchCharactersByName } from "../../services/api";
 import { GameActions } from "./Game.actions";
 
 export const getCharactersByName = async (charName) => {

@@ -1,39 +1,24 @@
 import "./Home.css";
-import React, { useState, useEffect } from "react";
-import { fetchCharacters } from "../../services/api";
+import React, { useEffect } from "react";
 import CharacterGuessCard from "../../components/CharacterGuessCard/CharacterGuessCard";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { GameContext } from "../../providers/GameProvider";
 import { splitFirstName } from "../../functions/splitFirstName";
 import CharactersCarouselContainer from "../../components/CharactersCarouselContainer/CharactersCarouselContainer";
+import { INITIAL_STATE, reducer } from "../../reducers/Home/Home.reducer";
+import { useReducer } from "react";
+import { loadMainCharacters, onMainCardClick } from "../../reducers/Home/Home.functions";
 
 const Home = () => {
-  const [mainCharacters, setMainCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [ state, dispatch ] = useReducer(reducer, INITIAL_STATE);
+  const { mainCharacters, loading, error } = state;
   const { bestScores } = useContext(GameContext);
   const navigate = useNavigate();
 
-  const loadMainCharacters = async () => {
-    try {
-      const mainChars = await fetchCharacters();
-      setMainCharacters(mainChars.slice(0, 5));
-    } catch (err) {
-      setError("Failed to fetch characters");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    loadMainCharacters();
+    loadMainCharacters(dispatch);
   }, []);
-
-  const onMainCardClick = (character) => {
-    const charName = splitFirstName(character.name);
-    navigate(`/Game/${charName}`);
-  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -45,8 +30,8 @@ const Home = () => {
 
   return (
     <main className="Home">
-      <div className="home-text-container">
-        <h2>Select character</h2>
+      <div className="home-text-container cloud-bg-effect">
+        <h2 className="texture-text">Select character</h2>
       </div>
       <div className="carousel-container">
         <CharactersCarouselContainer>
@@ -54,7 +39,7 @@ const Home = () => {
             <CharacterGuessCard
               key={character.name}
               character={character}
-              onClick={() => onMainCardClick(character)}
+              onClick={() => onMainCardClick(character, navigate)}
               name={character.name}
               bestScore={bestScores[splitFirstName(character.name)]}
             />
