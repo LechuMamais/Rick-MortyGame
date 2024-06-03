@@ -3,7 +3,7 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <header>
+    <header className="cloud-bg-effect">
       <Link to={"/"}>
         <h1>
           The{" "}

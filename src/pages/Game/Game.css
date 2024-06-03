@@ -14,8 +14,12 @@
     justify-content: space-evenly;
 }
 
+.Game .game-text-container h2{
+    min-height: 144px;
+}
+
 .Game .game-text-container h2 span {
-    font-size: clamp(var(--font-size-xlarge), 4vw, var(--font-size-xxxlarge));
+    font-size: clamp(var(--font-size-xlarge), 3.8vw, var(--font-size-xxxlarge));
     font-weight: 600;
     color: var(--color-accent) !important;
     padding: 0 var(--padding-base);
@@ -149,6 +153,7 @@
 
     .Game .game-text-container h2 {
         font-size: var(--font-size-xlarge);
+        min-height: 90px;
     }
 
     .Game .game-container .game-value {
