@@ -1,42 +1,20 @@
-import { handleScroll } from "./CharactersCarousel.functions";
 import "./CharactersCarouselContainer.css";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
+import { initializeCarousel, handleButtonClick } from "./CharactersCarousel.functions";
+
 
 const CharactersCarouselContainer = ({ children }) => {
   const carouselRef = useRef(null);
   const [items, setItems] = useState([]);
 
-  const handleButtonClick = () => {
-    const carousel = carouselRef.current;
-    carousel.scrollLeft += 225 + 32;
-  };
-
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    carousel.scrollLeft = 0;
-  }, []);
-
-  useEffect(() => {
-    setItems(React.Children.toArray(children));
-    const carousel = carouselRef.current;
-    carousel.addEventListener(
-      "scroll",
-      handleScroll(carousel, setItems, children)
-    );
-    return () => {
-      carousel.removeEventListener(
-        "scroll",
-        handleScroll(carousel, setItems, children)
-      );
-    };
-  }, [children]);
+  initializeCarousel(carouselRef, setItems, children);
 
   return (
     <div className="characters-carousel-container">
       <div className="characters-carousel" ref={carouselRef}>
         {items}
       </div>
-      <div className="carousel-btn-wrapper" onClick={handleButtonClick}>
+      <div className="carousel-btn-wrapper" onClick={() => handleButtonClick(carouselRef)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

@@ -49,4 +49,4 @@ Problemas actuales:
 
 
 To Do:
-    - Loaders
+    - Arreglar la funcionalidad infinita del slider de la Home

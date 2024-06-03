@@ -52,105 +52,110 @@ const Game = () => {
     }
   }, [UnSelectedCharacters]);
 
+  const renderGameTextContainer = () => (
+    <div className="game-text-container cloud-bg-effect">
+      <h3 className="texture-text">They are all {charName}, but...</h3>
+      <h2 className="texture-text">
+        Who is <span>{correctCharacter?.name}</span> ...?
+      </h2>
+    </div>
+  );
+
+  const renderCharacterList = () => (
+    <div className="character-list">
+      {loading ? (
+        <div className="carousel-container">
+          <div className="characters-carousel-container">
+            <div className="characters-carousel">
+              <CardSkeletorLoader />
+              <CardSkeletorLoader />
+              <CardSkeletorLoader />
+            </div>
+          </div>
+        </div>
+      ) : (
+        characterRandomOptions?.map((character) => (
+          <CharacterGuessCard
+            key={character.id}
+            character={character}
+            onClick={() =>
+              handleGuessCardSelection(
+                character,
+                correctCharacter,
+                dispatch,
+                UnSelectedCharacters,
+                charName,
+                points,
+                bestScores,
+                setBestScores
+              )
+            }
+          />
+        ))
+      )}
+    </div>
+  );
+
+  const renderGameOver = () => (
+    <div className="game-over-wrapper">
+      <div className="game-over-container texture-text">
+        <h2>GAME OVER</h2>
+        <div className="game-over-image-container">
+          <img src="/jerry_gif.webp" alt="Game Over" />
+        </div>
+        <p className="game-over-points">Points: {points}</p>
+        <p className="game-over-points-best-score">
+          Best score: {bestScores[charName]}
+        </p>
+      </div>
+      {renderButtonsContainer(true)}
+    </div>
+  );
+
+  const renderWin = () => (
+    <div className="game-win-container texture-text cloud-bg-effect">
+      <h2>You are the winner!</h2>
+      <h3>
+        You have correctly selected all the {charName}s of the multiverse!
+      </h3>
+      <p className="win-points win-points-actual-score">Points: {points}</p>
+      {renderButtonsContainer()}
+    </div>
+  );
+
+  const renderButtonsContainer = (restart = false) => (
+    <div className="buttons-container">
+      {restart && (
+        <button
+          onClick={() =>
+            startNewGame(dispatch, UnSelectedCharacters, allCharacters)
+          }
+          className="btn btn-start"
+          id="start-button"
+        >
+          ReStart
+        </button>
+      )}
+      <Link to={`/`}>
+        <button className="btn btn-back">Back</button>
+      </Link>
+    </div>
+  );
+
   return (
     <main className="Game">
-      {!gameOver && !win && (
-        <div className="game-text-container cloud-bg-effect">
-          <h3 className=" texture-text">They are all {charName}, but...</h3>
-          <h2 className=" texture-text">
-            Who is <span>{correctCharacter && correctCharacter.name}</span> ...?
-          </h2>
-        </div>
-      )}
+      {!gameOver && !win && renderGameTextContainer()}
       {!gameOver && !win && (
         <section className="game-container">
           <div className="game-values">
             <p className="game-value texture-text">Points: {points}</p>
           </div>
-          <div className="character-list">
-            {loading ? (
-              <div className="carousel-container">
-                <div className="characters-carousel-container">
-                  <div className="characters-carousel">
-                    <CardSkeletorLoader />
-                    <CardSkeletorLoader />
-                    <CardSkeletorLoader />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              characterRandomOptions?.map((character) => (
-                <CharacterGuessCard
-                  key={character.id}
-                  character={character}
-                  onClick={() =>
-                    handleGuessCardSelection(
-                      character,
-                      correctCharacter,
-                      dispatch,
-                      UnSelectedCharacters,
-                      charName,
-                      points,
-                      bestScores,
-                      setBestScores
-                    )
-                  }
-                />
-              ))
-            )}
-          </div>
+          {renderCharacterList()}
         </section>
       )}
-      {gameOver && (
-        <div className="game-over-wrapper">
-          <div className="game-over-container texture-text">
-            <h2>GAME OVER</h2>
-            <div className="game-over-image-container">
-              <img src="/jerry_gif.webp" alt="Game Over" />
-            </div>
-            <p className="game-over-points">Points: {points}</p>
-            <p className="game-over-points-best-score">
-              Best score: {bestScores[charName]}
-            </p>
-          </div>
-          <div className="buttons-container">
-            <button
-              onClick={() => {
-                startNewGame(dispatch, UnSelectedCharacters, allCharacters);
-              }}
-              className="btn btn-start"
-              id="start-button"
-            >
-              ReStart
-            </button>
-
-            <Link to={`/`}>
-              <button className="btn btn-back">Back</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      {win && (
-        <div className="game-win-container texture-text  cloud-bg-effect">
-          <h2>You are the winner!</h2>
-          <h3>
-            You have correctly selected all the {charName}s of the multiverse!
-          </h3>
-          <p className="win-points win-points-actual-score">Points: {points}</p>
-          <div className="buttons-container">
-            <Link to={`/`}>
-              <button className="btn btn-back">Back</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      {!win && !gameOver && (
-        <div className="buttons-container">
-          <Link to={`/`}>
-            <button className="btn btn-back">Back</button>
-          </Link>
-        </div>
-      )}
+      {gameOver && renderGameOver()}
+      {win && renderWin()}
+      {!win && !gameOver && renderButtonsContainer()}
     </main>
   );
 };
