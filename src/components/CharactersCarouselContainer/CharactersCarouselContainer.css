@@ -31,6 +31,7 @@
     transform: translateY(-50%);
     cursor: pointer;
     transition: all 150ms ease-in;
+    z-index: 50;
 }
 
 .characters-carousel-container .carousel-btn-wrapper:hover {

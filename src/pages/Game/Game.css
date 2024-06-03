@@ -14,9 +14,11 @@
     justify-content: space-evenly;
 }
 
-.Game .game-text-container h2{
+.Game .game-text-container h2 {
     min-height: 144px;
 }
+
+
 
 .Game .game-text-container h2 span {
     font-size: clamp(var(--font-size-xlarge), 3.8vw, var(--font-size-xxxlarge));
@@ -52,7 +54,7 @@
     gap: var(--margin-base);
 }
 
-.Game .buttons-container .btn{
+.Game .buttons-container .btn {
     width: 12rem;
 }
 
@@ -139,7 +141,7 @@
 }
 
 .Game .game-over-container .game-over-points,
-.Game .game-over-container .game-over-points-best-score{
+.Game .game-over-container .game-over-points-best-score {
     margin-top: var(--margin-base);
     font-size: var(--font-size-xlarge);
 }
@@ -171,5 +173,15 @@
 
     .Game .buttons-container {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .Game{
+        flex: 0;
+    }
+
+    .Game .game-text-container h3 {
+        font-size: var(--font-size-large);
     }
 }

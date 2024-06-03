@@ -1,5 +1,6 @@
 header {
     width: 100%;
+    padding: 0 var(--margin-base);
     box-shadow: 0px -5px 6px 9px var(--color-dark);
     display: flex;
     justify-content: center;
@@ -15,7 +16,7 @@ header {
 }
 
 header h1 {
-    font-size: clamp(2rem, 7vw, 6rem);
+    font-size: clamp(1.5rem, 7vw, 6rem);
     background: url('/title_texture.jpg');
     background-size: cover;
     -webkit-text-fill-color: transparent;
