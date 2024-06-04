@@ -57,7 +57,6 @@ export const handleGuessCardSelection = (selectedCharacter, correctCharacter, di
             setRandomAndCorrectCharacters(UnSelectedCharacters, dispatch);
         }
     } else {
-        updateBestScore(charName, actualScore, bestScores, setBestScores);
         dispatch({ type: GameActions.SET_GAME_OVER, payload: true })
     }
 };
