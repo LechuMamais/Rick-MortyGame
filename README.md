@@ -42,5 +42,8 @@ Paso a paso:
         seleccionados, que son con los que se continua jugando
 
 
-GameProvider nos provee de un estado para manejar los bestScores alcanzados con cada character. Sería mejor hacerlo con localStorage,
-pero estoy utilizando useContext para cumplir con los requisitos de la práctica.
+GameProvider nos provee de un estado para manejar los bestScores alcanzados con cada character. Al iniciarse chequea los valores
+    de localStorage para ver si hay puntajes antiguos, y actualiza el estado. Luego, cuando se logra un bestScore nuevo, actualiza
+    el localStorage para almacenar los nuevos valores.
+
+    

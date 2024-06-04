@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Game/:charName" element={<Game />} />
+          <Route path="*" element={<Home />} />
         </Routes>
         <Footer/>
       </div>
