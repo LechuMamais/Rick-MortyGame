@@ -24,8 +24,6 @@
     font-size: clamp(var(--font-size-xlarge), 3.8vw, var(--font-size-xxxlarge));
     font-weight: 600;
     color: var(--color-accent) !important;
-    padding: 0 var(--padding-base);
-    border-radius: var(--border-radius-base);
     text-decoration: underline;
 }
 
