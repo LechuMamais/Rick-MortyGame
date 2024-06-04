@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--margin-xlarge);
     text-align: center;
 }
 
@@ -17,12 +16,12 @@
 }
 
 .Home>.home-text-container {
-    padding: var(--margin-base) var(--margin-large);
+    padding: 0 var(--margin-large);
     border-radius: var(--margin-xlarge);
 }
 
 .Home>.home-text-container>h2 {
-    font-size: clamp(var(--font-size-xxlarge), 3vw, var(--font-size-xxlarge));
+    font-size: clamp(var(--font-size-xlarge), 4vw, var(--font-size-xxlarge));
 }
 
 .Home .carousel-container {
