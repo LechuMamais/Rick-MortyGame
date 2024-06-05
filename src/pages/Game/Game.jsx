@@ -130,8 +130,7 @@ const Game = () => {
           onClick={() =>
             startNewGame(dispatch, UnSelectedCharacters, allCharacters)
           }
-          className="btn btn-start"
-          id="start-button"
+          className="btn btn-restart"
         >
           ReStart
         </button>
