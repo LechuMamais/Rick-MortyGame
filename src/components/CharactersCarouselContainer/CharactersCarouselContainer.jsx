@@ -14,7 +14,7 @@ const CharactersCarouselContainer = ({ children }) => {
       <div className="characters-carousel" ref={carouselRef}>
         {items}
       </div>
-      <div className="carousel-btn-wrapper" onClick={() => handleButtonClick(carouselRef)}>
+      <div className="carousel-btn-wrapper cloud-bg-effect" onClick={() => handleButtonClick(carouselRef)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

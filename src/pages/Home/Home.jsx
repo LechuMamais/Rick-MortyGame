@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <main className="Home">
       <div className="home-text-container cloud-bg-effect">
-        <h2 className="texture-text">Select character</h2>
+        <h2 className="texture-text cloud-bg-effect">Select character</h2>
       </div>
       <div className="carousel-container">
         <CharactersCarouselContainer>
