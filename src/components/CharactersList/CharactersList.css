@@ -1,0 +1,6 @@
+.Game .game-container .character-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--margin-xlarge);
+}

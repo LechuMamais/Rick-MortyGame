@@ -1,0 +1,19 @@
+.Game .game-text-container {
+    margin: 0 auto;
+    min-width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Game .game-text-container h2 {
+    min-height: 144px;
+}
+
+.Game .game-text-container h2 span {
+    font-size: clamp(var(--font-size-xlarge), 3.8vw, var(--font-size-xxxlarge));
+    font-weight: 600;
+    color: var(--color-accent) !important;
+    text-decoration: underline;
+}
