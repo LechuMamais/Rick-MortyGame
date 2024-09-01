@@ -1,20 +1,15 @@
+import useCharactersCarousel from "../../hooks/useCharactersCarousel";
 import "./CharactersCarouselContainer.css";
-import React, { useRef, useState } from "react";
-import { initializeCarousel, handleButtonClick } from "./CharactersCarousel.functions";
-
 
 const CharactersCarouselContainer = ({ children }) => {
-  const carouselRef = useRef(null);
-  const [items, setItems] = useState([]);
-
-  initializeCarousel(carouselRef, setItems, children);
+  const { carouselRef, items, handleButtonClick } = useCharactersCarousel(children);
 
   return (
     <div className="characters-carousel-container">
       <div className="characters-carousel" ref={carouselRef}>
         {items}
       </div>
-      <div className="carousel-btn-wrapper cloud-bg-effect" onClick={() => handleButtonClick(carouselRef)}>
+      <div className="carousel-btn-wrapper cloud-bg-effect" onClick={handleButtonClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
